@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Untuk Kamu Yang Spesial</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fef7f0;
+      --fg: #2d2a26;
+      --muted: #8b7e74;
+      --accent: #d4765a;
+      --accent-light: #f4a98b;
+      --card: #fff9f5;
+      --border: #e8ddd4;
+      --pink: #e8a4b8;
+      --rose: #c97b84;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Animated Background */
+    .bg-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      background: 
+        radial-gradient(ellipse at 20% 20%, rgba(232, 164, 184, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(212, 118, 90, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(244, 169, 139, 0.08) 0%, transparent 70%);
+    }
+
+    /* Floating Hearts */
+    .heart {
+      position: fixed;
+      font-size: 20px;
+      color: var(--pink);
+      opacity: 0.4;
+      animation: floatHeart linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(100vh) rotate(0deg) scale(0.5);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.4;
+      }
+      90% {
+        opacity: 0.4;
+      }
+      100% {
+        transform: translateY(-100px) rotate(720deg) scale(1);
+        opacity: 0;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .envelope {
+      width: 120px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--rose) 100%);
+      border-radius: 8px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      margin-bottom: 2rem;
+      box-shadow: 0 20px 60px rgba(212, 118, 90, 0.3);
+    }
+
+    .envelope:hover {
+      transform: scale(1.05) rotate(-2deg);
+    }
+
+    .envelope::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+      clip-path: polygon(0 0, 50% 100%, 100% 0);
+      border-radius: 8px 8px 0 0;
+    }
+
+    .envelope::after {
+      content: '💕';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 700;
+      color: var(--fg);
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1s ease 0.5s forwards;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      color: var(--muted);
+      max-width: 500px;
+      line-height: 1.8;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1s ease 0.8s forwards;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 1.2s forwards, bounce 2s ease infinite 2s;
+    }
+
+    .scroll-hint span {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Section Styles */
+    .section {
+      position: relative;
+      z-index: 10;
+      padding: 6rem 1.5rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--fg);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 4rem;
+      font-size: 1.1rem;
+    }
+
+    /* Timeline / Kenangan */
+    .timeline {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--accent-light), var(--pink), var(--accent));
+      border-radius: 3px;
+    }
+
+    @media (max-width: 768px) {
+      .timeline::before {
+        left: 20px;
+      }
+    }
+
+    .memory-card {
+      display: flex;
+      align-items: center;
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .memory-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .memory-card:nth-child(odd) {
+      flex-direction: row;
+    }
+
+    .memory-card:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    @media (max-width: 768px) {
+      .memory-card,
+      .memory-card:nth-child(odd),
+      .memory-card:nth-child(even) {
+        flex-direction: row;
+        padding-left: 50px;
+      }
+    }
+
+    .memory-content {
+      flex: 1;
+      padding: 2rem;
+    }
+
+    .memory-image {
+      flex: 1;
+      position: relative;
+    }
+
+    .memory-image img {
+      width: 100%;
+      max-width: 300px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(45, 42, 38, 0.15);
+      transition: transform 0.5s ease;
+    }
+
+    .memory-image:hover img {
+      transform: scale(1.03) rotate(1deg);
+    }
+
+    .memory-date {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--rose) 100%);
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .memory-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--fg);
+    }
+
+    .memory-desc {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .memory-dot {
+      width: 20px;
+      height: 20px;
+      background: var(--accent);
+      border: 4px solid var(--bg);
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 0 4px var(--pink);
+    }
+
+    @media (max-width: 768px) {
+      .memory-dot {
+        left: 20px;
+      }
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .gallery-item.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-item::after {
+      content: attr(data-caption);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem;
+      background: linear-gradient(transparent, rgba(45, 42, 38, 0.8));
+      color: white;
+      font-size: 0.9rem;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover::after {
+      transform: translateY(0);
+    }
+
+    /* Letter Section */
+    .letter-section {
+      background: linear-gradient(180deg, var(--bg) 0%, #fff5ef 50%, var(--bg) 100%);
+      padding: 8rem 1.5rem;
+    }
+
+    .letter-container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--card);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      box-shadow: 
+        0 30px 80px rgba(45, 42, 38, 0.1),
+        0 0 0 1px var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .letter-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--accent), var(--pink), var(--rose));
+    }
+
+    .letter-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .letter-header h2 {
+      font-size: 2rem;
+      color: var(--fg);
+      margin-bottom: 0.5rem;
+    }
+
+    .letter-header p {
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .letter-content {
+      color: var(--fg);
+      line-height: 2;
+      font-size: 1.05rem;
+    }
+
+    .letter-content p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+    }
+
+    .letter-content .highlight {
+      background: linear-gradient(120deg, rgba(232, 164, 184, 0.3) 0%, rgba(244, 169, 139, 0.3) 100%);
+      padding: 0.1rem 0.3rem;
+      border-radius: 4px;
+    }
+
+    .letter-signature {
+      text-align: right;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px dashed var(--border);
+    }
+
+    .letter-signature p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .letter-signature span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* Response Section */
+    .response-section {
+      padding: 6rem 1.5rem;
+      text-align: center;
+    }
+
+    .response-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .response-btn {
+      padding: 1.2rem 3rem;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: none;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .btn-yes {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--rose) 100%);
+      color: white;
+      box-shadow: 0 10px 40px rgba(212, 118, 90, 0.4);
+    }
+
+    .btn-yes:hover {
+      transform: scale(1.08) translateY(-3px);
+      box-shadow: 0 15px 50px rgba(212, 118, 90, 0.5);
+    }
+
+    .btn-maybe {
+      background: var(--card);
+      color: var(--fg);
+      border: 2px solid var(--border);
+    }
+
+    .btn-maybe:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    /* Success Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(45, 42, 38, 0.7);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+      padding: 1rem;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: var(--card);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      max-width: 450px;
+      text-align: center;
+      transform: scale(0.8) translateY(50px);
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-emoji {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      animation: heartbeat 1s ease infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .modal-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--fg);
+    }
+
+    .modal-content p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* Music Player */
+    .music-player {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: var(--card);
+      padding: 0.8rem 1.2rem;
+      border-radius: 50px;
+      box-shadow: 0 10px 40px rgba(45, 42, 38, 0.15);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .music-player:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 50px rgba(45, 42, 38, 0.2);
+    }
+
+    .music-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--rose) 100%);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      transition: transform 0.3s ease;
+    }
+
+    .music-player.playing .music-icon {
+      animation: pulse 1s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .music-text {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .music-text strong {
+      display: block;
+      color: var(--fg);
+    }
+
+    /* Floating decorations */
+    .decoration {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    /* Scroll Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .heart {
+        display: none;
+      }
+    }
+
+    /* Photo Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(45, 42, 38, 0.95);
+      z-index: 2000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 16px;
+      box-shadow: 0 30px 100px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: var(--fg);
+      transition: transform 0.3s ease;
+    }
+
+    .lightbox-close:hover {
+      transform: rotate(90deg);
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Pattern -->
+  <div class="bg-pattern"></div>
+
+  <!-- Floating Hearts Container -->
+  <div id="hearts-container"></div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="envelope" onclick="scrollToContent()">
+      <span></span>
+    </div>
+    <h1 class="hero-title">Haii...</h1>
+    <p class="hero-subtitle">
+      Ada sesuatu yang ingin aku sampaikan. Sesuatu yang sudah lama tertulis di dalam hati lagi. Buka ya...
+    </p>
+    <div class="scroll-hint">
+      <span>Scroll ke bawah</span>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14M19 12l-7 7-7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Kenangan Section -->
+  <section class="section" id="kenangan">
+    <h2 class="section-title reveal">Kenangan Kita</h2>
+    <p class="section-subtitle reveal">Setiap momen bersamamu adalah cerita yang tak akan pernah aku lupa</p>
+    
+    <div class="timeline">
+      <div class="memory-card" data-delay="0">
+        <div class="memory-content">
+          <span class="memory-date">Pertemuan Pertama</span>
+          <h3 class="memory-title">Saat Mata Kita Bertemu</h3>
+          <p class="memory-desc">Aku masih ingat jelas hari itu. Senyummu yang pertama kali mengubah segalanya. Siapa sangka dari pertemuan sederhana itu aku ngerasa bener bener liat kamu yang bikin hati aku bertanya tanya.</p>
+        </div>
+        <div class="memory-image">
+          <img src="WhatsApp Image 2026-03-19 at 23.56.08 (1).jpeg" alt="First meeting">
+        </div>
+        <div class="memory-dot"></div>
+      </div>
+
+      <div class="memory-card" data-delay="100">
+        <div class="memory-content">
+          <span class="memory-date">First</span>
+          <h3 class="memory-title">Pas ini DEG DEGAN BANGET</h3>
+          <p class="memory-desc">Aku grogi banget waktu itu pas main kerumah kamu, tapi kamu bikin aku nyaman. Kamu tertawa lepas, dan di saat itu aku tau... aku mau dengar tawa itu selamanya.</p>
+        </div>
+        <div class="memory-image">
+          <img src="Foto dirumah.jpeg" alt="First date">
+        </div>
+        <div class="memory-dot"></div>
+      </div>
+
+      <div class="memory-card" data-delay="200">
+        <div class="memory-content">
+          <span class="memory-date">Momen Spesial</span>
+          <h3 class="memory-title">Lucu GA SIE</h3>
+          <p class="memory-desc">Aku ngerasa momen kita pas ini, kaya momen yang asik banget dan aku seneng banget pas liat kamu bisa jadi diri kamu sendiri, juga sangat lepas</p>
+        </div>
+        <div class="memory-image">
+          <img src="garland2.jpeg" alt="Special moment" style="display: block; margin :auto">
+        </div>
+        <div class="memory-dot"></div>
+      </div>
+
+      <div class="memory-card" data-delay="300">
+        <div class="memory-content">
+          <span class="memory-date">Canda Tawa</span>
+          <h3 class="memory-title">Lelucon Kamu yang selalu lucuu</h3>
+          <p class="memory-desc">Leluconmu yang lucuu kamu suka ngebuat aku makin ngerasa nyaman dan selalu nyaman, tapi jujur aja... itu jadi hal yang aku rindukan setiap hari.</p>
+        </div>
+        <div class="memory-content">
+          <img src="garland1.jpeg" alt="Laughing together" style="display :block; margin :auto">
+        </div>
+        <div class="memory-dot"></div>
+      </div>
+
+      <div class="memory-card" data-delay="400">
+        <div class="memory-content">
+          <span class="memory-date">Hari yang penting</span>
+          <h3 class="memory-title">Sweet seventeen</h3>
+          <p class="memory-desc">Hari dimana aku merayakan ulang taun kamu yang pertama kalinya, aku ngerasa sangat sneng banget, dan ngerasa ada satu kehangatan dengan keluarga kamu.</p>
+        </div>
+        <div class="memory-image">
+          <img src="ulytah.jpeg" alt="Comforting">
+        </div>
+        <div class="memory-dot"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="section" style="background: linear-gradient(180deg, var(--bg) 0%, #fff5ef 100%);">
+    <h2 class="section-title reveal">Galeri Senyummu</h2>
+    <p class="section-subtitle reveal">Setiap foto menyimpan seribu kata yang tak terucap</p>
+    
+    <div class="gallery-grid">
+      <div class="gallery-item" data-caption="Senyum itu...">
+        <img src="itang1.jpeg" alt="Gallery 1">
+      </div>
+      <div class="gallery-item" data-caption="Mata yang bicara">
+        <img src="itang2.jpeg" alt="Gallery 2">
+      </div>
+      <div class="gallery-item" data-caption="Tawa yang hangat">
+        <img src="tawa.jpeg" alt="Gallery 3">
+      </div>
+      <div class="gallery-item" data-caption="Momen bahagia paling bahagia">
+        <img src="fotbarultah.jpeg" alt="Gallery 4">
+      </div>
+      <div class="gallery-item" data-caption="Cahaya wajahmu">
+        <img src="itang3.jpeg" alt="Gallery 5">
+      </div>
+      <div class="gallery-item" data-caption="Keindahan sederhana">
+        <img src="itang4.jpeg" alt="Gallery 6">
+      </div>
+      <div class="gallery-item" data-caption="Waktu bersamamu">
+        <img src="fotbar1.jpeg" alt="Gallery 7">
+      </div>
+      <div class="gallery-item" data-caption="Cerita kita">
+        <img src="osisEra.jpeg" alt="Gallery 8">
+      </div>
+      <div class="gallery-item" data-caption="Kenangan manis">
+        <img src="fotostudio1.jpeg" alt="Gallery 9">
+      </div>
+      <div class="gallery-item" data-caption="Selamanya di hati">
+        <img src="itang5.jpeg" alt="Gallery 10">
+      </div>
+    </div>
+  </section>
+
+  <!-- Letter Section -->
+  <section class="letter-section" id="surat">
+    <h2 class="section-title reveal">Surat Untukmu</h2>
+    <p class="section-subtitle reveal">Dari hati yang tulus, untukmu yang selalu di dalamnya</p>
+    
+    <div class="letter-container reveal">
+      <div class="letter-header">
+        <h2>Untuk Kamu Yang Spesial</h2>
+        <p>Dengan segenap cinta dan ketulusan</p>
+      </div>
+      
+      <div class="letter-content">
+        <p>Aku mau jujur lagi dari hati aku ke kamu. Aku bilang ini buat mastiin dan selalu yakinin kamu, dan I hope...</p>
+
+        <p>Belakangan aku ngerasa kita ngobrol lagi dengan lebih tenang. Enggak banyak salah paham, enggak banyak emosi, dan kita jadi sama-sama tau harus bersikap gimana. <span class="highlight">Justru dari situ aku sadar, mungkin sekarang kita sebenarnya sudah jauh lebih ngerti satu sama lain dibanding dulu.</span></p>
+
+        <p>Aku juga ngerti kenapa kamu takut sama hubungan. Kamu pernah disakiti, pernah dikecewain, pernah dibohongi. Wajar kalau kamu jadi hati-hati dan memilih buat jaga diri kamu. Aku enggak pernah nyalahin kamu untuk itu.</p>
+
+        <p>Tapi jujur, selama ini aku juga bertahan bukan tanpa alasan. <span class="highlight">Mungkin suatu hari kamu bakal ngerti kenapa aku bisa segitunya sama kamu.</span> Sabar mana yang enggak aku tunggu, rasa kecewa mana yang enggak aku maafin. Aku tetap ada bukan karena aku enggak punya pilihan lain, tapi karena aku memang memilih kamu. Bahkan di saat keadaan kita enggak selalu baik.</p>
+
+        <p>Aku juga mau kamu tau, aku di sini enggak main-main. Aku serius sama apa yang aku rasain, dan aku serius sama kamu. Ini aku bilang lagi ke kamu, bukan sekadar kata-kata, tapi karena aku bener-bener mau ngebuktiin itu lewat sikap aku ke depannya.</p>
+
+        <p>Aku enggak minta semuanya langsung berubah. Aku cuma berharap kamu bisa lihat kalau sekarang kita sebenarnya sudah belajar dari banyak hal. <span class="highlight">Kita sudah tau mana yang dulu menyakiti, dan mana yang harus kita jaga supaya enggak terulang lagi.</span></p>
+
+        <p>Jadi kalau boleh aku minta satu hal... <strong>coba lirik aku lagi.</strong> Ayo kita jalanin lagi, tapi dengan cara yang lebih pelan, lebih dewasa, dan lebih saling menjaga. Aku di sini enggak akan pergi. Aku akan tetap ada di samping kamu, tetap yakinin kamu pelan-pelan kalau enggak semua hubungan harus berakhir dengan luka. Aku mau mastiin kamu juga kalau perasaan aku ini bener-bener serius, dan aku bakal buktiin itu, bukan cuma sekarang tapi ke depannya juga.</p>
+
+        <p style="margin-top: 2rem; font-style: italic; color: var(--rose);">PS: Kamu tau gak? Setiap malam sebelum tidur, aku selalu mikirin kamu. Bukan karena terpaksa, tapi karena kamu memang jadi orang terakhir yang ingin aku pikirin sebelum aku mimpi. Dan harapannya... kamu juga jadi orang pertama yang aku lihat pas bangun. Selamanya.</p>
+      </div>
+
+      <div class="letter-signature">
+        <p>Dengan segenap cinta,</p>
+        <span>Yang selalu menunggu kamu dan saelalu sayang</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Response Section -->
+  <section class="response-section" id="jawaban">
+    <h2 class="section-title reveal">Jadi...</h2>
+    <p class="section-subtitle reveal">Aku udah buka semua yang ada di hati. Sekarang giliran kamu...</p>
+    
+    <div class="response-buttons reveal">
+      <button class="response-btn btn-yes" onclick="showModal('yes')">
+        Mauuuu, Kita Coba Lagi
+      </button>
+      <button class="response-btn btn-maybe" onclick="showModal('maybe')">
+        Beri Aku Waktu yahh
+      </button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="text-align: center; padding: 3rem 1rem; color: var(--muted); position: relative; z-index: 10;">
+    <p>Dibuat dengan sepenuh hati untuk seseorang yang istimewa, 
+     dan maaf aku belum sempurna, codingan ini juga masih berantakan</p>
+    <p style="margin-top: 0.5rem; font-size: 0.9rem;">2026</p>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal-content">
+      <div class="modal-emoji" id="modal-emoji">💕</div>
+      <h3 id="modal-title">Terima Kasih</h3>
+      <p id="modal-text">Pesan kamu sudah tersimpan di hati. Apapun jawabannya, aku tetap bersyukur pernah mengenalmu.</p>
+      <button class="response-btn btn-yes" style="margin-top: 1.5rem;" onclick="closeModal()">Tutup</button>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">✕</span>
+    <img id="lightbox-img" src="" alt="Lightbox">
+  </div>
+
+  <!-- Music Player -->
+  <div class="music-player" id="musicPlayer" onclick="toggleMusic()">
+    <div class="music-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+      </svg>
+    </div>
+    <div class="music-text">
+      <strong>Sempurna</strong>
+      <span></span>
+    </div>
+  </div>
+ <script>const CONFIG = {
+  // GANTI dengan nomer WA kamu (format: 62xxx, tanpa +)
+  whatsappNumber: '6285861053679',   // <-- GANTI INI
+  
+  // GANTI dengan email kamu
+  email: 'zakkimuhammadf5@gmail.com',      // <-- GANTI INI
+  
+  // GANTI dengan nama kamu
+  yourName: 'Zakki M.F'              // <-- GANTI INI
+};</script> 
+
+  <!-- Audio -->
+  <audio id="bgMusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Initialize variables first
+    let isPlaying = false;
+    const musicPlayer = document.getElementById('musicPlayer');
+    const bgMusic = document.getElementById('bgMusic');
+    const heartsContainer = document.getElementById('hearts-container');
+
+    // Floating Hearts Animation
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerHTML = '❤';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+      heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
+      heart.style.opacity = Math.random() * 0.3 + 0.2;
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 20000);
+    }
+
+    // Create hearts periodically
+    setInterval(createHeart, 2000);
+
+    // Initial hearts
+    for (let i = 0; i < 5; i++) {
+      setTimeout(createHeart, i * 400);
+    }
+
+    // Scroll Reveal
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all reveal elements
+    document.querySelectorAll('.reveal, .memory-card, .gallery-item').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Memory cards with stagger delay
+    document.querySelectorAll('.memory-card').forEach((card, index) => {
+      card.style.transitionDelay = (index * 0.15) + 's';
+    });
+
+    // Gallery items with stagger delay
+    document.querySelectorAll('.gallery-item').forEach((item, index) => {
+      item.style.transitionDelay = (index * 0.08) + 's';
+    });
+
+    // Scroll to content
+    function scrollToContent() {
+      document.getElementById('kenangan').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Music Toggle
+    function toggleMusic() {
+      if (isPlaying) {
+        bgMusic.pause();
+        musicPlayer.classList.remove('playing');
+        musicPlayer.querySelector('span').textContent = 'Klik untuk putar';
+      } else {
+        bgMusic.play().catch(e => console.log('Audio play failed:', e));
+        musicPlayer.classList.add('playing');
+        musicPlayer.querySelector('span').textContent = 'Sedang diputar...';
+      }
+      isPlaying = !isPlaying;
+    }
+
+    // Modal Functions
+    function showModal(type) {
+      const modal = document.getElementById('modal');
+      const emoji = document.getElementById('modal-emoji');
+      const title = document.getElementById('modal-title');
+      const text = document.getElementById('modal-text');
+
+      if (type === 'yes') {
+        emoji.textContent = '🎉💕';
+        title.textContent = 'Kamu Bilang Mau!';
+        text.innerHTML = 'Aku tak punya kata-kata yang cukup untuk mengungkapkan kebahagiaanku. Ini adalah awal baru yang lebih baik untuk kita. Aku janji akan jaga kamu dengan segenap hati. <br><br><strong>Kita mulai lagi, yuk!</strong> 🥺💕';
+      } else {
+        emoji.textContent = '⏳';
+        title.textContent = 'Aku Akan Menunggu';
+        text.innerHTML = 'Tidak masalah. Aku mengerti kamu butuh waktu. Aku di sini, di tempat yang sama, menunggu kamu dengan hati yang sama. <br><br><em>Tidak ada batas waktu untuk perasaan yang tulus.</em> 🤍';
+      }
+
+      modal.classList.add('active');
+      
+      // Create celebration hearts for "yes"
+      if (type === 'yes') {
+        for (let i = 0; i < 20; i++) {
+          setTimeout(createHeart, i * 100);
+        }
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.remove('active');
+    }
+
+    // Lightbox
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        lightboxImg.src = img.src;
+        lightbox.classList.add('active');
+      });
+    });
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
+    // Close modal on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+        closeLightbox();
+      }
+    });
+
+    // Close modal on outside click
+    document.getElementById('modal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        closeModal();
+      }
+    });
+
+    // Parallax effect on scroll
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const pattern = document.querySelector('.bg-pattern');
+      if (pattern) {
+        pattern.style.transform = `translateY(${scrolled * 0.3}px)`;
+      }
+    });
+
+    // Add typing effect to letter
+    function typeWriter(element, text, speed) {
+      let i = 0;
+      element.innerHTML = '';
+      function type() {
+        if (i < text.length) {
+          element.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        }
+      }
+      type();
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      // Add initial animations
+      document.body.style.opacity = '0';
+      setTimeout(() => {
+        document.body.style.transition = 'opacity 0.5s ease';
+        document.body.style.opacity = '1';
+      }, 100);
+    });
+  </script>
+</body>
+</html>
